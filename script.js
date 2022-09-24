@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $("#btnSim").on("click", function(){
-        swal("", "Vamos sair pra um encontro?", "success");
+        swal("", "❤️", "success");
     });
 
     $("#btnNao").hover(

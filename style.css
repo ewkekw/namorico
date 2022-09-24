@@ -3,7 +3,7 @@
 body {
     min-height: 100vh;
     margin: 0;
-    background: linear-gradient(45deg, rgb(255, 182, 193), rgb(255, 118, 139));
+    background: linear-gradient(45deg, rgb(0, 0, 0), rgb(20, 25, 95));
     padding: 60px;
     cursor: pointer;
 }
@@ -45,7 +45,7 @@ body {
 }
 
 .greenButton:hover {
-    background-color: #2c974b;
+    background-color: #af1616;
 }
 
 .greenButton:focus {

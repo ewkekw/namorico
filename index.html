@@ -1,26 +1,132 @@
 <!DOCTYPE html>
-<html lang="pt-BR"
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Namora Comigo?</title>
-
-    <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <link rel="icon" type="image/png" href="icon.png">
+  <audio id="backgroundMusic" autoplay loop>
+    <source src="C418.m4a" type="audio/mpeg">
+  </audio>
 </head>
+<body onload="displayQuote(); setTimeout(myFunction, 20000);">
+  <div class="backgroundMainMenu" id="content">
+    <center> 
+      <img class="logo" src="/pedido.png" width="100%">
+      <table>  
+        <tr>  
+          <a><div class="mainBtn" onclick="showTermsAndConditions(); btnMinecraft();">
+            <div class="textBtn">
+              Claro que sim!
+            </div>
+          </div></a>
+          <a><div class="mainBtn" onclick="showErrorMessage(); btnMinecraft();">
+            <div class="textBtn">
+              Não sei bem...
+            </div>
+          </div></a>
+        </tr>
+      </table>  
+      <div class="subtitle" id="quote">Sim Sim Sim Sim!</div>
+    </center>
+  </div>
 
-<body>
-    <h1 id="titulo">Quer namorar comigo?</h1>
+  <div class="backgroundMainMenu" id="termsAndConditions" style="display: none;">
+    <center> 
+      <div class="termsPopup">
+        <div class="termsText">
+          <h1>Termos e Condições</h1>
+          <p>Conheci uma garota chamada Hyasmim. Até então, eu pensava em apenas "ficar" com ela, mas ao conhecê-la, percebi o brilho que transbordava de seu olhar, o que me fez refletir sobre o quanto ela merece muito mais do que isso. Repensei minha conduta e até mesmo meu futuro. Esses foram os pensamentos que tive na primeira vez em que te vi. No entanto, aqui estou eu, expressando um sentimento que em algum momento você já demonstrou interesse sobre.
+          </p>
+          <p> Hoje tenho plena certeza do que quero para o meu futuro e meus planos de vida, e você é uma dessas certezas. Eu te amo mais do que poderia ser expresso em um site cafona de minecraft. Agradeço por ter me proporcionado uma nova perspectiva da realidade e por me inspirar a ser tão brilhante quanto você. Esse novo olhar e sua inclusão em meus planos de vida me causaram medo devido à incerteza que me aguarda no futuro, mas como Nietzsche já dizia: "Amar é ter coragem de se tornar vulnerável, abandonar as defesas e abraçar a incerteza". Portanto, quero me tornar completamente vulnerável e vivenciar a incerteza mais feliz da minha vida.
+          </p>
+          <p>Espero que sejamos felizes juntos e que possamos conviver de igual para igual, apesar das nossas diferenças. Também espero que cada momento seja vivido como único, que cada local seja experienciado como o melhor lugar do mundo por termos a companhia um do outro. Além disso, espero poder compartilhar de cada boa memória como se fosse a última.</p>
+        </div>
+        <div class="termsCheckbox">
+          <input type="checkbox" id="termsCheckbox">
+          <label for="termsCheckbox">Aceita mergulhar nesse relacionamento?</label>
+        </div>
+        <div class="termsButton">
+          <button onclick="redirectToLink(); btnMinecraft();" disabled id="agreeButton" class="mainBtn">Aceito</button>
+        </div>
+      </div>
+    </center>
+  </div>
 
-    <button id="btnSim" class="greenButton">SIM</button>
-    <button id="btnNao" class="greenButton">NÃO</button>
+  <audio id="btnAudioClick" src="/click.mp3"></audio>
+  <script src="script.js"></script>
+  <script>
+    document.title = "boiolage";
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    var Quotes = [
+      "Diz que sim!!!!", 
+    ];
 
-    <script src="script.js"></script>
-</body>
+    var clicks = 0;
 
+    function displayQuote() {
+      var num = Math.floor(Math.random() * 1);
+      document.getElementById("quote").innerHTML = Quotes[num];
+    }
+
+    function btnMinecraft() {
+      var sound = document.getElementById("btnAudioClick");
+      sound.play();
+    }
+
+    function showTermsAndConditions() {
+      // Ocultar todos os elementos do conteúdo
+      var elementsToHide = document.querySelectorAll("#content img, #content table, #content .subtitle, #content .mainBtn");
+      elementsToHide.forEach(function(element) {
+        element.style.display = "none";
+      });
+
+      // Exibir o pop-up de termos e condições
+      var termsPopup = document.getElementById("termsAndConditions");
+      termsPopup.style.display = "block";
+
+      // Trocar o background para bg2.png
+      document.body.style.backgroundImage = "url('/bg2.png')";
+    }
+
+// Função personalizada para exibir o alerta com o texto modificado
+function showAlert(message) {
+  var customAlertText = "Kawê disse: " + message;
+  window.alert(customAlertText);
+}
+
+// Exemplo de uso da função showAlert
+function showErrorMessage() {
+  var confirmButtonText = "Houve um erro ao executar o comando do botão, tente clicar novamente.";
+
+  if (confirm(confirmButtonText)) {
+    var button = document.getElementsByClassName("mainBtn")[1];
+    clicks++;
+
+    if (clicks <= 2) {
+      button.style.transform = "scale(0.8)";
+      button.style.opacity = 1 - (clicks / 4);
+    } else {
+      var interval = setInterval(function() {
+        if (parseFloat(button.style.opacity) <= 0) {
+          clearInterval(interval);
+          button.style.display = "none";
+          showAlert("Aparentemente estamos com problemas técnicos, restando apenas outras funções do nosso site :(");
+        } else {
+          button.style.transform = "scale(0.8)";
+          button.style.opacity = parseFloat(button.style.opacity) - 0.25;
+        }
+      }, 250);
+    }
+  }
+}
+
+
+    function redirectToLink() {
+      window.location.href = "https://youtu.be/wgjfYMXm-3M"; // vídeo que vou fazer
+    }
+
+    document.getElementById("termsCheckbox").addEventListener("change", function() {
+      document.getElementById("agreeButton").disabled = !this.checked;
+    });
+  </script>
+</body>  
 </html>
